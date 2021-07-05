@@ -1,7 +1,11 @@
+>!
+- 银行卡识别接口全面升级，算法更强、性能更优，支持子账号调用。欢迎立即体验[ 新版银行卡识别](https://cloud.tencent.com/document/product/866/36216)。
+- 新老版本的接口计费模式相同，且共享计费阶梯和资源包，您可以在【文字识别控制台】>【[银行卡识别](https://console.cloud.tencent.com/ai/ocr/bankcard)】中查看调用情况。
+- 老版本接口我们仍继续维护，但不支持新客户开通调用，建议您使用 [新版银行卡识别](https://cloud.tencent.com/document/product/866/36216)，体验更优服务。
 ## 接口描述
 接口请求域名：`https://recognition.image.myqcloud.com/ocr/bankcard`
 本接口（bankcard）用于根据用户上传的银行卡图像，返回识别出的银行卡字段信息。开发者使用功能之前，需要先注册腾讯云账号，添加密钥。
->!本接口支持 HTTPS 协议，如果您现在使用的是 HTTP 协议，为了保障您的数据安全，请切换至 HTTPS。
+>?本接口支持 HTTPS 协议，如果您现在使用的是 HTTP 协议，为了保障您的数据安全，请切换至 HTTPS。
 
 ## 请求头 header
 
@@ -17,7 +21,7 @@
 | 参数    | 必选 | 类型     | 说明                                   |
 | ----- | ---- | ------ | ------------------------------------ |
 | appid | 是   | String |接入项目的唯一标识，可在 [账号信息](https://console.cloud.tencent.com/developer) 或 [云 API 密钥](https://console.cloud.tencent.com/cam/capi) 中查看。                           |
-| image | 否   | Binary/String | 图片文件或图片 base6。                                 |
+| image | 否   | Binary/String | 图片文件或图片 base64。                                 |
 | url   | 否   | String | 图片 url 和 image 同时赋值时，则以 url 指定的图像作为输入。 |
 
 ## 输出参数
@@ -201,9 +205,9 @@ Content-Type: application/json
 | -1301 | ERROR_PARAMETER_EMPTY           |
 | -1304 | ERROR_PARAMETER_TOO_LONG        |
 | -5208 | OCR_SERVER_INTERN_ERROR         |
-| -9010 | CREDITCARD_OCR_PREPROCESS_ERROR |
 | -9011 | CREDITCARD_OCR_RECOG_FAILED     |
+| -9010 | CREDITCARD_OCR_PREPROCESS_ERROR |
 
-更多其他 API 错误码请查看 [错误码说明](https://cloud.tencent.com/document/product/866/17733)。 
+更多其他 API 错误码请查看 [错误码说明](https://cloud.tencent.com/document/product/866/17733)。   
 
 
