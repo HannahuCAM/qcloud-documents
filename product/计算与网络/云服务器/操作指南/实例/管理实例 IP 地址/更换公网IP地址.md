@@ -1,58 +1,50 @@
-## 操作场景
+本文列出了更换公网 IP 地址的两种方式。
+- [直接更换公网 IP](#ReplacementPublicIP)：适用于 CVM 已有普通公网 IP 的场景。
+- [先更换为弹性公网 IP，再解绑弹性公网 IP](#ReplacementEIP)：适用于传统账户类型用户更换公网 IP 地址的场景。
 
-实例更换公网 IP 可以通过执行绑定弹性 IP 和解绑弹性 IP 的操作来进行。本文档指导您如何更换公网 IP 地址。
+## 注意事项
+如果您选择**直接更换公网 IP**，请注意以下事项：
+- 每个账号单个地域不超过3次/天。
+- 每台实例**仅允许更换1次**公网 IP。
+- **更换后原公网 IP 将被释放。**
 
-> **注意：**
-> 解绑后的弹性 IP 如果不再使用请尽快释放，否则会收取闲置费用，同时释放后的弹性 IP 将无法找回。详情参考 [弹性公网 IP 计费模式](https://cloud.tencent.com/document/product/215/11145)。
+如果您选择**先更换为弹性公网 IP，再解绑弹性公网 IP**，请注意以下事项：
+- 弹性公网 IP 与云服务器实例绑定时，实例的当前公网 IP 地址会被释放。
+- 每个账户单个地域弹性公网 IP 配额数为20个。
+- 为保证 IP 资源有效利用，未绑定实例的弹性公网 IP，将按小时收取 [IP 资源费用](https://cloud.tencent.com/document/product/1199/41692#ip)。
 
 ## 操作步骤
+<span id="ReplacementPublicIP"></span>
+### 方式一：直接更换公网 IP
+1. 登录  [云服务器控制台](https://console.cloud.tencent.com/cvm/index)。
+2. 在实例的管理页面，选择待转换 IP 的云服务器地域，并在对应云服务器所在行，单击**更多** > **IP/网卡** > **更换公网 IP**，如下图所示：
+   ![](https://main.qcloudimg.com/raw/bb96cccdb32772523bb3b5e33041884f.png)
+3. 在弹出的 “更换 IP” 提示框中，单击**确认**，即可完成更换。
 
-### 转换为弹性 IP
+<span id="ReplacementEIP"></span>
+### 方式二：先更换为弹性公网 IP，再解绑弹性公网 IP
+>?此方式仅传统账户类型适用。
+>
 
-1. 登录 [云服务器控制台](https://console.cloud.tencent.com/cvm/index)。
-2. 在 “云主机” 中，选择待转换为弹性 IP的服务器，单击【更多】>【IP操作】>【绑定弹性IP】。如下图所示：
-![](https://main.qcloudimg.com/raw/d9c315bdbc0ddb0355794b2bf255ab2c.png)
-3. 在弹出的 “转换为弹性公网IP” 窗口中，单击【确定转换】。如下图所示：
-![](https://main.qcloudimg.com/raw/21abc599d29d3408a3813860338d116c.png)
-成功转换成弹性 IP 的状态如下图：
-![](https://main.qcloudimg.com/raw/7dfeb52aaf8d2378678e902813cd8644.png)
->! 弹性 IP 申请后建议立即绑定服务器使用，否则会收取闲置费用。计费详情参考 [弹性公网 IP 计费模式](https://cloud.tencent.com/document/product/215/11145)。
+#### 步骤一：更换弹性公网 IP
+1. 登录  [云服务器控制台](https://console.cloud.tencent.com/cvm/index)。
+2. 在实例的管理页面，选择待转换 IP 的云服务器地域，并在对应云服务器所在行，单击<img src="https://main.qcloudimg.com/raw/25e8c0e37b73c12da900301f03e57dbc.png" style="margin: 0;"></img>。如下图所示：
+![](https://main.qcloudimg.com/raw/6074eacd870c1d236726cb4e1d4e5aa6.png)
+3. 在弹出的 “转换为弹性公网 IP” 窗口中，单击**确定**。
 
-### 解绑/释放弹性 IP
-1. 在 “云主机” 中，选择待解绑 IP 的服务器，单击【更多】>【IP 操作】>【解绑弹性IP】。如下图所示：
-![](https://main.qcloudimg.com/raw/9caabaf86b4b0a8ce5531c00feb3f96c.png)
-2. 在弹出的 “解绑弹性公网IP” 窗口中， 单击两次【确定】，解绑弹性 IP。如下图所示：
-![](https://main.qcloudimg.com/raw/81cdd6e3cd4cef10c162f09e09d473db.png)
-3. 在左侧导航栏中，选择【弹性公网IP】，进入 “弹性公网IP” 页面。如下图所示：
-![](https://main.qcloudimg.com/raw/ba657c5b7f5051b51470f5528035a22a.png)
-4. 在待释放弹性 IP的服务器行中，单击【释放】，弹出 “释放弹性公网IP” 窗口。如下图所示：
-![](https://main.qcloudimg.com/raw/ae239d7d3e66214bfd1516f9933bb829.png)
-5. 单击两次【确定】，即可成功释放弹性 IP。
+#### 步骤二：解绑弹性公网 IP
+1. 待完成转换后，在对应云服务器所在行，单击**更多** > **IP/网卡** > **解绑弹性 IP**。如下图所示：
+ ![](https://main.qcloudimg.com/raw/37523cff19b08fb8431881a3bf6aab4e.png)
+2. 在弹出的 “解绑弹性公网 IP” 窗口中，勾选**解绑后重新分配普通公网 IP**，单击**确定**。如下图所示：
+<img src="https://qcloudimg.tencent-cloud.cn/raw/6076fc8554bd068b22de74a9fdc62711.png" width="70%">
+3. 在弹出的提示框中，单击**确定**，即可完成更换。
 
-### 绑定弹性 IP/分配公网 IP
-
-请根据实际需求，选择不同的方式为主机绑定新的 IP。
-- 通过[ “绑定弹性 IP” 方式](#BindingEIP)
-- 通过 [“在解绑弹性IP时，分配公网 IP” 方式](#AssignPublicIP)
-
-<span id="BindingEIP"></span>
-####  “绑定弹性 IP” 方式
-
-1. 在 “弹性公网IP” 页面中，选择需绑定弹性 IP 的服务器，单击【绑定】。如下图所示：
-![](https://main.qcloudimg.com/raw/97d4a2acd3813a42584615a531593b84.png)
-2. 在弹出的 “绑定资源” 窗口中，根据实际需求，选择需要绑定的实例和主机 ID，单击两次【确定】。如下图所示：
-![](https://main.qcloudimg.com/raw/de2d879345c646e565744bfe5af8bf97.png)
-返回如下图所示信息，即表示绑定成功。
-![](https://main.qcloudimg.com/raw/d5bf01a819e552afa41ffbfe373d0675.png)
-
-<span id="AssignPublicIP"></span>
-#### “在解绑弹性 IP 时，分配公网 IP” 方式
-
-1. 在左侧导航栏中，选择【云主机】，进入 “云主机” 页面。
-3. 在 “云主机” 页面中，选择待解绑 IP 的服务器，单击【更多】>【IP 操作】>【解绑弹性IP】，弹出的 “解绑弹性公网IP” 窗口。
-2. 在弹出的 “解绑弹性公网IP” 窗口中， 勾选 “解绑后免费分配公网IP”，单击两次【确定】，即可通过 “在解绑弹性 IP 时，分配公网 IP” 方式完成绑定。
-![](https://main.qcloudimg.com/raw/5716fd9089304b68d9fec588a5694852.png)
-
+#### 步骤三：释放弹性公网 IP（可选）
+>? 由于解绑弹性公网 IP 时，解绑的弹性公网 IP 仍保留在该账号下，为避免闲置不使用的 IP 继续收取费用，建议执行以下操作，释放未绑定实例的弹性公网 IP。
+>
+1. 登录 [公网 IP 控制台](https://console.cloud.tencent.com/cvm/eip)。
+2. 在公网 IP 页面顶部，选择刚解绑的弹性公网 IP，单击**更多** > **释放**。
+3. 在弹出的 “确定释放所选 EIP？” 窗口中，勾选**确定释放以上 IP**，单击**释放**。
 
 
 
